@@ -42,7 +42,7 @@ Follow these steps to run the Excel Agent locally:
 Open a terminal in the project root and run:
 
 ```bash
-npm install
+yarn install
 ```
 
 #### 2. Sign In to Microsoft 365
@@ -60,7 +60,7 @@ Use the Microsoft 365 Agents Toolkit to provision resources:
 Alternatively, run from the terminal:
 
 ```bash
-npm run provision
+yarn provision
 ```
 
 This creates the necessary build artifacts in the `appPackage/build` folder.
@@ -70,7 +70,7 @@ This creates the necessary build artifacts in the `appPackage/build` folder.
 Start the local web server to serve the plugin files:
 
 ```bash
-npm run dev-server
+yarn dev-server
 ```
 
 > **Important**: If prompted to delete an old certificate or install a new one, agree to both prompts for proper HTTPS setup.
@@ -118,9 +118,9 @@ For deploying to a remote environment with dev tunnels:
 If you haven't already, log in and create a dev tunnel:
 
 ```bash
-npm run tunnel:login
-npm run tunnel:create
-npm run tunnel:port
+yarn tunnel:login
+yarn tunnel:create
+yarn tunnel:port
 ```
 
 See [DEVTUNNEL-SETUP.md](./DEVTUNNEL-SETUP.md) for detailed tunnel configuration instructions.
@@ -128,7 +128,7 @@ See [DEVTUNNEL-SETUP.md](./DEVTUNNEL-SETUP.md) for detailed tunnel configuration
 #### 2. Provision for Dev Environment
 
 ```bash
-npm run provision:dev
+yarn provision:dev
 ```
 
 This provisions resources for the `dev` environment (uses `env/.env.dev` configuration).
@@ -140,13 +140,13 @@ Use the VS Code task **"Start Agent Remotely"** or manually:
 1. Start the dev tunnel:
 
    ```bash
-   npm run tunnel:host
+   yarn tunnel:host
    ```
 
 2. In a separate terminal, start the dev server:
 
    ```bash
-   npm run dev-server
+   yarn dev-server
    ```
 
 3. The agent will be accessible through the dev tunnel URL
@@ -156,7 +156,7 @@ Use the VS Code task **"Start Agent Remotely"** or manually:
 To create a production build:
 
 ```bash
-npm run build
+yarn build
 ```
 
 This creates optimized bundles in the `dist` folder.
@@ -169,7 +169,7 @@ Live reloading is not supported during the preview period. To test changes:
    - Press `Ctrl+C` in the terminal running `dev-server`, or run:
 
      ```bash
-     npm run stop
+     yarn stop
      ```
 
 2. **Clear Office cache** following the [official instructions](https://learn.microsoft.com/en-us/office/dev/add-ins/testing/clear-cache#manually-clear-the-cache)
@@ -286,7 +286,7 @@ This feature is currently in **preview**. Your feedback is valuable:
 
 ### Certificate Errors
 
-- Accept prompts to install development certificates when running `npm run dev-server`
+- Accept prompts to install development certificates when running `yarn dev-server`
 - On Windows, you may need to restart VS Code after certificate installation
 
 ### Changes Not Reflected
