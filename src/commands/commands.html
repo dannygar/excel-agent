@@ -1,0 +1,26 @@
+<!-- 
+ This file is needed because JavaScript files can't be directly loaded into the type of runtime that Office 
+ uses for Copilot API plugins. Instead, an HTML file with a <script> element loads the JavaScript.
+ -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <title>Excel Agent Commands</title>
+
+    <!-- Office JavaScript API -->
+    <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1.1/hosted/office.js"></script>
+</head>
+
+<!-- 
+ - Since the file's only purpose is to load other files, the <body> element is empty. The file has no UI and is never displayed to users.
+ - It loads the file office.js, which is the Office JavaScript Library, from a Microsoft server.
+ - It doesn't have a <script> element to load a commands.js file (transpiled from the commands.ts that you created) because this <script> element is added at build-time by another file.
+ - When project is built and served on a server, the URL of this HTML file matches the value of the extensions.runtimes.code.page property in the manifest. 
+-->
+<body>
+</body>
+
+</html>

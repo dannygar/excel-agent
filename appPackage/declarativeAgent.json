@@ -1,0 +1,19 @@
+{
+    "$schema": "https://developer.microsoft.com/json-schemas/copilot/declarative-agent/v1.6/schema.json",
+    "version": "v1.6",
+    "name": "Excel Agent (${{APP_NAME_SUFFIX}})",
+    "description": "An agent that helps users interact with Excel workbooks using natural language.",
+    "instructions": "$[file('instruction.txt')]",
+    "conversation_starters": [
+        {
+            "title": "Change cell color",
+            "text": "I want to change the color of cell B2 to orange"
+        }
+    ],
+    "actions": [
+        {
+            "id": "ExcelActions",
+            "file": "Office-API-local-plugin.json"
+        }
+    ]    
+}

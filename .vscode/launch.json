@@ -1,0 +1,133 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Excel Desktop (Edge Chromium)",
+            "type": "msedge",
+            "request": "attach",
+            "url": "https://localhost:3000/*",
+            "webRoot": "${workspaceRoot}",
+            "timeout": 120000,
+            "preLaunchTask": "Debug: Excel Desktop",
+            "postDebugTask": "Stop Debug",
+            "sourceMapPathOverrides": {
+                "webpack:///./*": "${webRoot}/*",
+                "webpack:///src/*": "${webRoot}/*",
+                "webpack:///*": "*"
+            }
+        },
+        {
+            "name": "Launch Agent in Copilot (Edge)",
+            "type": "msedge",
+            "request": "launch",
+            "url": "https://m365.cloud.microsoft/chat/entity1-d870f6cd-4aa5-4d42-9626-ab690c041429/${local:agent-hint}?auth=2&developerMode=Basic",
+            "presentation": {
+                "group": "all",
+                "hidden": true
+            },
+            "internalConsoleOptions": "neverOpen",
+            "runtimeArgs": [
+                "--remote-debugging-port=9222",
+                "--no-first-run"
+            ]
+        },
+        {
+            "name": "Launch Agent in Copilot (Chrome)",
+            "type": "chrome",
+            "request": "launch",
+            "url": "https://m365.cloud.microsoft/chat/entity1-d870f6cd-4aa5-4d42-9626-ab690c041429/${local:agent-hint}?auth=2&developerMode=Basic",
+            "presentation": {
+                "group": "all",
+                "hidden": true
+            },
+            "internalConsoleOptions": "neverOpen",
+            "runtimeArgs": [
+                "--remote-debugging-port=9223",
+                "--no-first-run"
+            ]
+        },
+        {
+            "name": "Preview in Copilot (Edge)",
+            "type": "msedge",
+            "request": "launch",
+            "url": "https://m365.cloud.microsoft/chat/entity1-d870f6cd-4aa5-4d42-9626-ab690c041429/${agent-hint}?auth=2&developerMode=Basic",
+            "presentation": {
+                "group": "remote",
+                "order": 1
+            },
+            "internalConsoleOptions": "neverOpen",
+            "runtimeArgs": [
+                "--remote-debugging-port=9224",
+                "--no-first-run"
+            ]
+        },
+        {
+            "name": "Preview in Copilot (Chrome)",
+            "type": "chrome",
+            "request": "launch",
+            "url": "https://m365.cloud.microsoft/chat/entity1-d870f6cd-4aa5-4d42-9626-ab690c041429/${agent-hint}?auth=2&developerMode=Basic",
+            "presentation": {
+                "group": "remote",
+                "order": 2
+            },
+            "internalConsoleOptions": "neverOpen",
+            "runtimeArgs": [
+                "--remote-debugging-port=9225",
+                "--no-first-run"
+            ]
+        },
+        {
+            "name": "Excel Desktop Remote (Edge Chromium)",
+            "type": "msedge",
+            "request": "attach",
+            "url": "https://rz0g74v6-3000.usw3.devtunnels.ms/*",
+            "webRoot": "${workspaceRoot}",
+            "timeout": 120000,
+            "preLaunchTask": "Debug: Excel Desktop",
+            "postDebugTask": "Stop Debug",
+            "sourceMapPathOverrides": {
+                "webpack:///./*": "${webRoot}/*",
+                "webpack:///src/*": "${webRoot}/*",
+                "webpack:///*": "*"
+            }
+        }
+    ],
+    "compounds": [
+        {
+            "name": "Debug Copilot in Excel Desktop",
+            "configurations": [
+                "Excel Desktop (Edge Chromium)"
+            ],
+            "preLaunchTask": "Start Agent Locally",
+            "presentation": {
+                "group": "all",
+                "order": 1
+            },
+            "stopAll": true
+        },
+        {
+            "name": "Debug Copilot in Edge",
+            "configurations": [
+                "Launch Agent in Copilot (Edge)"
+            ],
+            "preLaunchTask": "Start Agent Locally",
+            "presentation": {
+                "group": "all",
+                "order": 2
+            },
+            "stopAll": true
+        },
+        {
+            "name": "Debug Copilot in Excel Desktop (Remote)",
+            "configurations": [
+                "Excel Desktop Remote (Edge Chromium)"
+            ],
+            "preLaunchTask": "Start Agent Remotely",
+            "presentation": {
+                "group": "all",
+                "order": 3
+            },
+            "stopAll": true
+        }
+    ]
+}
