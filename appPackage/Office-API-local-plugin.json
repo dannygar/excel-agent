@@ -108,6 +108,47 @@
           "instructions": "Present the search results in a clear, organized manner. Include the relevant excerpts and provide the documentation URLs for further reading. If multiple relevant results are found, summarize the key points."
         }
       }
+    },
+    {
+      "name": "CreateTable",
+      "description": "Creates a formatted table in Excel with the provided column headers and data rows. The table will be inserted starting at a specified cell location.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "StartCell": {
+            "type": "string",
+            "description": "The top-left cell location where the table should start (e.g., 'A1', 'B5')",
+            "default": "A1"
+          },
+          "Headers": {
+            "type": "string",
+            "description": "Comma-separated list of column header names (e.g., 'Name,Age,City' or 'Product,Price,Quantity')"
+          },
+          "Rows": {
+            "type": "string",
+            "description": "Pipe-separated rows where each row contains comma-separated values matching the headers (e.g., 'John,25,NYC|Jane,30,LA|Bob,35,SF')"
+          }
+        },
+        "required": [
+          "StartCell",
+          "Headers",
+          "Rows"
+        ]
+      },
+      "returns": {
+        "type": "string",
+        "description": "A string indicating the result of the table creation, including the range where the table was created."
+      },
+      "states": {
+        "reasoning": {
+          "description": "`CreateTable` creates a formatted table in Excel with headers and data rows at the specified location.",
+          "instructions": "Parse the user's request to extract the starting cell, column headers, and row data. Ensure the number of values in each row matches the number of headers. If the user provides data in a different format, convert it to the required array structure."
+        },
+        "responding": {
+          "description": "`CreateTable` creates a formatted table in Excel with headers and data rows.",
+          "instructions": "If there is no error, tell the user the table was successfully created, mentioning the starting cell and the number of rows and columns. If there's a mismatch in data structure, explain what went wrong."
+        }
+      }
     }
   ],
   "runtimes": [
@@ -118,7 +159,8 @@
       },
       "run_for_functions": [
         "FillColor",
-        "EnterValue"
+        "EnterValue",
+        "CreateTable"
       ]
     },
     {

@@ -12,6 +12,14 @@
         {
             "title": "Enter value in cell",
             "text": "Please enter the value '100' into cell A1"
+        },
+        {
+            "title": "Create a table",
+            "text": "Create a table starting at A1 with headers Name, Age, City and rows John, 25, NYC | Jane, 30, LA"
+        },
+        {
+            "title": "Search Microsoft Docs",
+            "text": "Search Microsoft documentation for Excel JavaScript API range methods"
         }
     ],
     "actions": [
