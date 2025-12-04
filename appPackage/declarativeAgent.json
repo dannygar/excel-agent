@@ -8,6 +8,10 @@
         {
             "title": "Change cell color",
             "text": "I want to change the color of cell B2 to orange"
+        },
+        {
+            "title": "Enter value in cell",
+            "text": "Please enter the value '100' into cell A1"
         }
     ],
     "actions": [

@@ -78,6 +78,36 @@
           "instructions": "If there is no error present, tell the user the cell location and value that was set."
         }
       }
+    },
+    {
+      "name": "SearchMicrosoftDocs",
+      "description": "Search Microsoft documentation and retrieve relevant information based on a query. Returns up to 10 high-quality content excerpts from official Microsoft Learn and Azure documentation.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "The search query to find relevant Microsoft documentation. Should be a clear description of what information you're looking for (e.g., 'Azure Functions triggers', 'Excel JavaScript API', 'TypeScript best practices')."
+          }
+        },
+        "required": [
+          "query"
+        ]
+      },
+      "returns": {
+        "type": "string",
+        "description": "A formatted string containing relevant documentation excerpts with titles, URLs, and content snippets from official Microsoft sources."
+      },
+      "states": {
+        "reasoning": {
+          "description": "`SearchMicrosoftDocs` searches official Microsoft documentation to find relevant information for the user's query.",
+          "instructions": "Formulate a clear and specific search query based on the user's question. Include relevant product names, features, or concepts. The search will return authoritative content from Microsoft Learn and official documentation."
+        },
+        "responding": {
+          "description": "`SearchMicrosoftDocs` retrieves information from Microsoft documentation.",
+          "instructions": "Present the search results in a clear, organized manner. Include the relevant excerpts and provide the documentation URLs for further reading. If multiple relevant results are found, summarize the key points."
+        }
+      }
     }
   ],
   "runtimes": [
@@ -89,6 +119,18 @@
       "run_for_functions": [
         "FillColor",
         "EnterValue"
+      ]
+    },
+    {
+      "type": "RemoteMCPServer",
+      "spec": {
+        "url": "https://mcp.microsoft.com/microsoft-docs"
+      },
+      "auth": {
+        "type": "None"
+      },
+      "run_for_functions": [
+        "SearchMicrosoftDocs"
       ]
     }
   ]
