@@ -41,6 +41,43 @@
           "instructions": "If there is no error present, tell the user the cell location and color that was set."
         }
       }
+    },
+    {
+      "name": "EnterValue",
+      "description": "EnterValue updates a single cell location with a specific value.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "Cell": {
+            "type": "string",
+            "description": "A cell location in the format of A1, B2, etc.",
+            "default": "A1"
+          },
+          "Value": {
+            "type": "string",
+            "description": "The value to enter in the cell (text, number, or formula)",
+            "default": "Hello"
+          }
+        },
+        "required": [
+          "Cell",
+          "Value"
+        ]
+      },
+      "returns": {
+        "type": "string",
+        "description": "A string indicating the result of the action."
+      },
+      "states": {
+        "reasoning": {
+          "description": "`EnterValue` updates the value of a single cell based on the grid location.",
+          "instructions": "Accept any text, number, or formula as the value. For formulas, ensure they start with an equals sign (=)."
+        },
+        "responding": {
+          "description": "`EnterValue` updates the value of a single cell based on the grid location.",
+          "instructions": "If there is no error present, tell the user the cell location and value that was set."
+        }
+      }
     }
   ],
   "runtimes": [
@@ -50,7 +87,8 @@
         "local_endpoint": "Microsoft.Office.Addin"
       },
       "run_for_functions": [
-        "FillColor"
+        "FillColor",
+        "EnterValue"
       ]
     }
   ]

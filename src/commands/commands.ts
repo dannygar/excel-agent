@@ -5,6 +5,15 @@ async function fillColor(cell: string, color: string) {
     await context.sync();
   })
 }
+
+async function enterValue(cell: string, value: string) {
+  // @ts-ignore
+  await Excel.run(async (context) => {
+    context.workbook.worksheets.getActiveWorksheet().getRange(cell).values = [[value]];
+    await context.sync();
+  })
+}
+
 // @ts-ignore
 Office.onReady((info) => {
   // @ts-ignore
@@ -17,5 +26,12 @@ Office.onReady((info) => {
     const { Cell: cell, Color: color } = JSON.parse(message);
     await fillColor(cell, color);
     return "Cell color changed.";
+  })
+
+  // @ts-ignore
+  Office.actions.associate("EnterValue", async (message) => {
+    const { Cell: cell, Value: value } = JSON.parse(message);
+    await enterValue(cell, value);
+    return "Cell value updated.";
   })
 });
