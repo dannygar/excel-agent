@@ -16,6 +16,7 @@
                 "webpack:///*": "*"
             }
         },
+
         {
             "name": "Launch Agent in Copilot (Edge)",
             "type": "msedge",

@@ -89,21 +89,36 @@ Office.onReady((info) => {
 
   // @ts-ignore
   Office.actions.associate("CreateTable", async (message) => {
+    console.log("=== CreateTable called ===");
+    console.log("Raw message:", message);
+    
     try {
       const params = JSON.parse(message);
+      console.log("Parsed params:", params);
+      
       const startCell = params.StartCell || "A1";
       const headers = params.Headers || "";
       const rows = params.Rows || "";
       
+      console.log("StartCell:", startCell);
+      console.log("Headers:", headers);
+      console.log("Rows:", rows);
+      
       if (!headers || !rows) {
+        console.error("Missing headers or rows");
         return "Error: Both headers and rows are required to create a table.";
       }
       
       await createTable(startCell, headers, rows);
+      
       const numCols = headers.split(',').length;
       const numRows = rows.split('|').length;
+      console.log(`✅ Table created: ${numCols} columns, ${numRows} rows`);
+      
       return `Table created successfully at ${startCell} with ${numCols} columns and ${numRows} rows.`;
     } catch (error) {
+      console.error("❌ Error in CreateTable:", error);
+      console.error("Stack:", error.stack);
       return `Error creating table: ${error.message}`;
     }
   })
