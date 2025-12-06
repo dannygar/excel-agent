@@ -18,8 +18,12 @@
             "text": "Create a table starting at A1 with headers Name, Age, City and rows John, 25, NYC | Jane, 30, LA"
         },
         {
-            "title": "Search Microsoft Docs",
-            "text": "Search Microsoft documentation for Excel JavaScript API range methods"
+            "title": "Get total revenue",
+            "text": "Get total revenue for MSFT in 4th quarter of 2025"
+        },
+        {
+            "title": "Get total free cash flow",
+            "text": "Get total free cash flow for MSFT in 4th quarter of 2025"
         }
     ],
     "actions": [

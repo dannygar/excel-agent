@@ -80,36 +80,6 @@
       }
     },
     {
-      "name": "SearchMicrosoftDocs",
-      "description": "Search Microsoft documentation and retrieve relevant information based on a query. Returns up to 10 high-quality content excerpts from official Microsoft Learn and Azure documentation.",
-      "parameters": {
-        "type": "object",
-        "properties": {
-          "query": {
-            "type": "string",
-            "description": "The search query to find relevant Microsoft documentation. Should be a clear description of what information you're looking for (e.g., 'Azure Functions triggers', 'Excel JavaScript API', 'TypeScript best practices')."
-          }
-        },
-        "required": [
-          "query"
-        ]
-      },
-      "returns": {
-        "type": "string",
-        "description": "A formatted string containing relevant documentation excerpts with titles, URLs, and content snippets from official Microsoft sources."
-      },
-      "states": {
-        "reasoning": {
-          "description": "`SearchMicrosoftDocs` searches official Microsoft documentation to find relevant information for the user's query.",
-          "instructions": "Formulate a clear and specific search query based on the user's question. Include relevant product names, features, or concepts. The search will return authoritative content from Microsoft Learn and official documentation."
-        },
-        "responding": {
-          "description": "`SearchMicrosoftDocs` retrieves information from Microsoft documentation.",
-          "instructions": "Present the search results in a clear, organized manner. Include the relevant excerpts and provide the documentation URLs for further reading. If multiple relevant results are found, summarize the key points."
-        }
-      }
-    },
-    {
       "name": "CreateTable",
       "description": "Creates a formatted table in Excel with the provided column headers and data rows. The table will be inserted starting at a specified cell location.",
       "parameters": {
@@ -149,6 +119,92 @@
           "instructions": "If there is no error, tell the user the table was successfully created, mentioning the starting cell and the number of rows and columns. If there's a mismatch in data structure, explain what went wrong."
         }
       }
+    },
+    {
+      "name": "get_company_revenue",
+      "description": "Get total revenue in USD millions for a given company's quarterly earnings report",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "company_symbol": {
+            "type": "string",
+            "description": "The stock symbol of the company (e.g., MSFT, TSLA, NVDA).",
+            "default": "MSFT"
+          },
+          "fiscal_year": {
+            "type": "string",
+            "description": "The fiscal year for the earnings report (e.g., 2024, 2025).",
+            "default": "2025"
+          },
+          "fiscal_quarter": {
+            "type": "string",
+            "description": "The fiscal quarter for the earnings report (e.g., 1, 2, 3, 4).",
+            "default": "Q1"
+          }
+        },
+        "required": [
+          "company_symbol",
+          "fiscal_year",
+          "fiscal_quarter"
+        ]
+      },
+      "returns": {
+        "type": "string",
+        "description": "The total revenue in USD millions for the specified company's quarterly earnings report."
+      },
+      "states": {
+        "reasoning": {
+          "description": "`get_company_revenue` retrieves the total revenue in USD millions for a given company's quarterly earnings report.",
+          "instructions": "Use the provided company symbol, fiscal year, and fiscal quarter to search for the relevant earnings report. If the user provides the fiscal quarter in a different format (e.g., 'Q1' instead of '1'), convert it to the required format."
+        },
+        "responding": {
+          "description": "`get_company_revenue` retrieves the total revenue in USD millions for a given company's quarterly earnings report.",
+          "instructions": "If the revenue is successfully retrieved, provide the total revenue in USD millions. If there's an error (e.g., data not found), inform the user and suggest checking the provided parameters or contacting support."
+        }
+      }
+    },
+    {
+      "name": "get_company_free_cash_flow",
+      "description": "Get total free cash flow in USD millions for a given company's quarterly earnings report",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "company_symbol": {
+            "type": "string",
+            "description": "The stock symbol of the company (e.g., MSFT, TSLA, NVDA).",
+            "default": "MSFT"
+          },
+          "fiscal_year": {
+            "type": "string",
+            "description": "The fiscal year for the earnings report (e.g., 2024, 2025).",
+            "default": "2025"
+          },
+          "fiscal_quarter": {
+            "type": "string",
+            "description": "The fiscal quarter for the earnings report (e.g., 1, 2, 3, 4).",
+            "default": "Q1"
+          }
+        },
+        "required": [
+          "company_symbol",
+          "fiscal_year",
+          "fiscal_quarter"
+        ]
+      },
+      "returns": {
+        "type": "string",
+        "description": "The total free cash flow in USD millions for the specified company's quarterly earnings report."
+      },
+      "states": {
+        "reasoning": {
+          "description": "`get_company_free_cash_flow` retrieves the total free cash flow in USD millions for a given company's quarterly earnings report.",
+          "instructions": "Use the provided company symbol, fiscal year, and fiscal quarter to search for the relevant earnings report. If the user provides the fiscal quarter in a different format (e.g., 'Q1' instead of '1'), convert it to the required format."
+        },
+        "responding": {
+          "description": "`get_company_free_cash_flow` retrieves the total free cash flow in USD millions for a given company's quarterly earnings report.",
+          "instructions": "If the free cash flow is successfully retrieved, provide the total free cash flow in USD millions. If there's an error (e.g., data not found), inform the user and suggest checking the provided parameters or contacting support."
+        }
+      }
     }
   ],
   "runtimes": [
@@ -166,13 +222,14 @@
     {
       "type": "RemoteMCPServer",
       "spec": {
-        "url": "https://mcp.microsoft.com/microsoft-docs"
+        "url": "https://func-api-lbb7y7o3kqtza.azurewebsites.net/runtime/webhooks/mcp/sse?code=<${mcp-extension-system-key}>"
       },
       "auth": {
         "type": "None"
       },
       "run_for_functions": [
-        "SearchMicrosoftDocs"
+        "get_company_revenue",
+        "get_company_free_cash_flow"
       ]
     }
   ]
