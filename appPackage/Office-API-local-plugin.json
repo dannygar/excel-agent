@@ -222,7 +222,7 @@
     {
       "type": "RemoteMCPServer",
       "spec": {
-        "url": "https://func-api-lbb7y7o3kqtza.azurewebsites.net/runtime/webhooks/mcp/sse?code=<${mcp-extension-system-key}>"
+        "url": "https://ca-mcp-k3237bnczbacq.wonderfulbush-19db5808.eastus2.azurecontainerapps.io/mcp"
       },
       "auth": {
         "type": "None"
