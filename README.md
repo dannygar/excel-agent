@@ -254,6 +254,10 @@ This project demonstrates a basic implementation of changing cell colors. You ca
 
 ## Additional Resources
 
+### Developer Tools
+
+- **[Copilot Developer Commands](./docs/COPILOT-DEVELOPER-COMMANDS.md)** - Comprehensive cheat-sheet of all developer and debugging commands for declarative agents in M365 Copilot Chat (Excel, Word, PowerPoint, and other M365 apps)
+
 ### Documentation
 
 - **[Build API plugins for Microsoft 365 Copilot with Office JavaScript Library](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/build-api-plugins-local-office-api)** - Official tutorial this project is based on
